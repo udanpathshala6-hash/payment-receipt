@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Login</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Background Decorative Elements */
+    body::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      padding: 40px 35px;
+      border-radius: 20px;
+      width: 380px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      position: relative;
+      z-index: 1;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 32px;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
+    }
+
+    h2 {
+      text-align: center;
+      color: #1e2937;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    p.subtitle {
+      text-align: center;
+      color: #64748b;
+      margin-bottom: 30px;
+      font-size: 15px;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #64748b;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+    }
+
+    .dashboard {
+      display: none;
+    }
+
+    .select-container {
+      margin: 25px 0;
+    }
+
+    select {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 16px;
+      background: white;
+      cursor: pointer;
+    }
+
+    .status {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+      color: #10b981;
+      font-weight: 500;
+    }
+
+    .footer-text {
+      text-align: center;
+      margin-top: 25px;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Login Section -->
+    <div id="loginBox">
+      <div class="logo">DP</div>
+      <h2>Welcome Back</h2>
+      <p class="subtitle">Sign in to access your dashboard</p>
+
+      <div class="input-group">
+        <input type="text" id="username" placeholder="Username" />
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="password" placeholder="Password" />
+        <span class="toggle-password" id="togglePassword">👁️</span>
+      </div>
+
+      <button onclick="login()">Sign In</button>
+      <div class="footer-text">Demo: admin / 1234</div>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboard" class="dashboard">
+      <div class="logo">DP</div>
+      <h2>Dashboard</h2>
+      <p class="subtitle">Select a module to continue</p>
+
+      <div class="select-container">
+        <select id="pageSelect">
+          <option value="">-- Choose Module --</option>
+          <option value="receiver.html">Receiver Module</option>
+          <option value="payer.html">Payer Module</option>
+          <option value="payerstudent.html">Payer Module(Student)</option>
+        </select>
+      </div>
+
+      <button onclick="openPage()">Open Selected Module</button>
+      <div class="status">Logged in as <strong>admin</strong></div>
+    </div>
+
+  </div>
+
+  <script>
+    // Password Toggle
+    document.getElementById('togglePassword').addEventListener('click', function () {
+      const passwordField = document.getElementById('password');
+      if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        this.textContent = '🙈';
+      } else {
+        passwordField.type = 'password';
+        this.textContent = '👁️';
+      }
+    });
+
+    // Login Function
+    function login() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (username === 'admin' && password === 'UDAN2444') {
+        document.getElementById('loginBox').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+      } else {
+        alert('❌ Incorrect username or password');
+      }
+    }
+
+    // Open Selected Page
+    function openPage() {
+      const selectedPage = document.getElementById('pageSelect').value;
+
+      if (selectedPage) {
+        window.location.href = selectedPage;
+      } else {
+        alert('Please select a module');
+      }
+    }
+
+    // Allow pressing Enter to login
+    document.getElementById('password').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') login();
+    });
+  </script>
+
+</body>
+</html>

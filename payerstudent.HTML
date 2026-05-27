@@ -1,0 +1,359 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>UDAN PATHSHALA Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      position: relative;
+    }
+
+    .logo {
+      width: 80px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+     .watermark {
+      position: absolute;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-70%);
+      opacity: 0.08;
+      z-index: 0;
+      width: 300px;
+    
+    }
+
+    h2 {
+      text-align: center;
+      text-decoration: underline;
+      margin-bottom: 5px;
+    }
+
+    .address {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-spacing: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 5px;
+      font-size: 14px;
+      border: 1px solid #aaa;
+    }
+
+    .payment-details-group {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .payment-details-group > div {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .thank-you {
+      text-align: center;
+      border: 1px solid #000;
+      padding: 10px;
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 40px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    button {
+      padding: 10px 30px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .signatures {
+      margin-top: 50px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .signature-box {
+      width: 40%;
+      border-top: 1px solid #000;
+      text-align: center;
+      padding-top: 5px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    @media print {
+      .buttons {
+        display: none;
+      }
+
+      input, select {
+        border: none;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .thank-you {
+        margin-top: 50px;
+      }
+
+      .signatures {
+        margin-top: 30px;
+      }
+    }
+  </style>
+</head>
+<body onload="setTodayDate()">
+
+  <div class="container">
+    <img src="123456.jpg" alt="Logo" class="logo" />
+    <img src="123456.jpg" alt="Watermark" class="watermark" />
+
+    <h2>UDAN PATHSHALA</h2>
+    <div class="address">
+      G.T ROAD, PARBIRHATA CROSSING, SRIPALLY<br />
+      PURBA BARDHAMAN - 03
+    </div>
+
+    <form id="udanForm">
+      <table>
+        <tr>
+          <td>
+            <label>Student Name</label>
+            <input type="text" name="studentName" required />
+          </td>
+          <td>
+            <label>Course Name</label>
+            <select name="courseName" required>
+              <option value="">Select Course</option>
+              <option>SSC</option>
+              <option>PSC</option>
+              <option>Bank PO- IBPS+SBI</option>
+              <option>Rail</option>
+              <option>SLST</option>
+              <option>Nursing</option>
+              <option>CGL</option>
+              <option>CHSL</option>
+              <option>MTS</option>
+              <option>CPO</option>
+              <option>CISF</option>
+              <option>BSF</option>
+              <option>CRPF</option>
+              <option>GD CONSTABLE</option>
+              <option>SSC Gr. C</option>
+              <option>SSC Gr. D</option>
+              <option>Primary</option>
+              <option>Upper Primary</option>
+              <option>SSC - SLST</option>
+              <option>WBP Constable</option>
+              <option>WBP SI</option>
+              <option>K.P Constable</option> 
+              <option>K.P SI</option>
+              <option>WB PSC</option>
+              <option>Clerk</option>
+              <option>Misc. Services </option>
+              <option>Group - D</option>
+              <option>WBCS</option>
+              <option>SBI Clerk</option>
+              <option>IBPS Clerk</option>
+              <option>SSC Stenographer</option>
+              <option>Primary (I-IV)</option>
+              <option>Preparatory Courses Mission School</option>
+              <option>Upper Primary (V-VIII)</option>
+              <option>Secondary (IX-X)</option>
+              <option>Higher Secondary (XI-XII)	</option>
+              <option>JEE/NEET</option>
+              <option>JENPAS UG</option>
+              <option>ANM/GNM</option>
+              <option>B.A(Mejor)</option>
+              <option>B.A(Minor)</option>
+              <option>B.S.C(Mejor)</option>
+              <option>B.S.C(Minor)</option>
+              <option>B.COM(Mejor)</option>
+              <option>B.COM(Minor)</option>     
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Total Fees</label>
+            <input type="number" id="totalFees" required oninput="calculateNetFees()" />
+          </td>
+          <td>
+            <label>Payment Date</label>
+            <input type="date" id="number"  />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Scholarship / Discount</label>
+            <input type="number" id="discount" value="0" oninput="calculateNetFees()" />
+          </td>
+          <td>
+            <label>Receipt No</label>
+            <input type="text" name="receiptNo" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Net Fees</label>
+            <input type="number" id="netFees" readonly />
+          </td>
+          <td>
+            <label>Payment Method</label>
+            <select id="paymentMethod" onchange="showPaymentFields()">
+              <option value="none">None</option>
+              <option value="cash">Cash</option>
+              <option value="upi">UPI</option>
+              <option value="netbanking">Net Banking</option>
+              <option value="cheque">Cheque</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label>Payment</label>
+            <input type="number" id="paymentAmount" value="0" oninput="calculateDue()" />
+          </td>
+          <td>
+            <label>Due Payment</label>
+            <input type="number" id="duePayment" readonly />
+          </td>
+        </tr>
+      </table>
+
+      <!-- UPI Fields -->
+      <div id="upiFields" class="hidden payment-details-group">
+        <div>
+          <label>UPI ID</label>
+          <input type="text" id="upiId" />
+        </div>
+        <div>
+          <label>Transaction ID</label>
+          <input type="text" id="upiTxnId" />
+        </div>
+      </div>
+
+      <!-- Net Banking -->
+      <div id="netbankingFields" class="hidden payment-details-group">
+        <div>
+          <label>Transaction ID</label>
+          <input type="text" id="netTxnId" />
+        </div>
+      </div>
+
+      <!-- Cheque -->
+      <div id="chequeFields" class="hidden payment-details-group">
+        <div>
+          <label>Cheque No</label>
+          <input type="text" id="chequeNo" />
+        </div>
+        <div>
+          <label>Owner Name</label>
+          <input type="text" id="Ownername" />
+        </div>
+        <div>
+          <label>Owner Phone No</label>
+          <input type="text" id="Ownerpnoneno" />
+        </div>
+      </div>
+      <BR>       </BR>
+
+      <!-- Signatures -->
+      <div class="signatures">
+        <div class="signature-box">Official Stamp</div>
+        <div class="signature-box">Authorised Signatory</div>
+      </div>
+
+      <!-- THANKING YOU -->
+      <div class="thank-you">THANKING YOU</div>
+
+      <!-- Buttons -->
+      <div class="buttons">
+        <button type="button" onclick="window.print()">Print</button>
+        <button type="reset">Clear Form</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    
+
+    function calculateNetFees() {
+      const total = parseFloat(document.getElementById("totalFees").value) || 0;
+      const discount = parseFloat(document.getElementById("discount").value) || 0;
+      const net = total - discount;
+      document.getElementById("netFees").value = net.toFixed(2);
+      calculateDue();
+    }
+
+    function calculateDue() {
+      const net = parseFloat(document.getElementById("netFees").value) || 0;
+      const paid = parseFloat(document.getElementById("paymentAmount").value) || 0;
+      const due = net - paid;
+      document.getElementById("duePayment").value = due.toFixed(2);
+    }
+
+    function showPaymentFields() {
+      const method = document.getElementById("paymentMethod").value;
+      document.getElementById("upiFields").classList.add("hidden");
+      document.getElementById("netbankingFields").classList.add("hidden");
+      document.getElementById("chequeFields").classList.add("hidden");
+
+      if (method === "upi") {
+        document.getElementById("upiFields").classList.remove("hidden");
+      } else if (method === "netbanking") {
+        document.getElementById("netbankingFields").classList.remove("hidden");
+      } else if (method === "cheque") {
+        document.getElementById("chequeFields").classList.remove("hidden");
+      }
+    }
+  </script>
+</body>
+</html>

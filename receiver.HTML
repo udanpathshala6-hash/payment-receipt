@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>UDAN PATHSHALA RECEIPT</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background:#ececec;
+    padding:20px;
+    overflow:auto;   
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container{
+
+    width:297mm;
+    height:148.5mm;
+
+    margin:auto;
+
+    background:#fff;
+
+    padding:8mm 10mm;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+   height:auto;  
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo{
+
+    width:90px;
+
+    position:absolute;
+
+    top:10px;
+    left:100px;
+}
+
+/* =========================
+   WATERMARK
+========================= */
+
+.watermark{
+
+    position:absolute;
+
+    top:120px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:400px;
+
+    opacity:0.05;
+
+    z-index:0;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+h2{
+
+    text-align:center;
+
+    font-size:32px;
+
+    margin-bottom:2px;
+
+    letter-spacing:1px;
+}
+
+.address{
+
+    text-align:center;
+
+    font-weight:bold;
+
+    font-size:13px;
+
+    line-height:1.4;
+
+    margin-bottom:12px;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+table{
+
+    width:100%;
+
+    border-spacing:10px;
+
+    position:relative;
+
+    z-index:1;
+}
+
+label{
+
+    display:block;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    margin-bottom:3px;
+}
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:3px 4px;
+
+    font-size:12px;
+
+    border:none;
+
+    border-bottom:1px solid #777;
+
+    background:transparent;
+
+    outline:none;
+}
+
+textarea{
+
+    resize:none;
+
+    height:38px;
+}
+
+/* =========================
+   PAYMENT DETAILS
+========================= */
+
+.payment-details-group{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-top:5px;
+}
+
+.payment-details-group > div{
+
+    flex:1;
+
+    min-width:120px;
+}
+
+.hidden{
+
+    display:none;
+}
+
+/* =========================
+   SIGNATURE
+========================= */
+
+.signatures{
+
+    margin-top:70px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:70px;
+}
+
+.signature-box{
+
+    width:30%;
+
+    border-top:1px solid #000;
+
+    text-align:center;
+
+    padding-top:5px;
+
+    font-weight:bold;
+
+    font-size:12px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin-top:12px;
+}
+
+button{
+
+    padding:7px 20px;
+
+    font-size:13px;
+
+    border:none;
+
+    border-radius:4px;
+
+    background:#007BFF;
+
+    color:#fff;
+
+    cursor:pointer;
+}
+
+button:hover{
+
+    background:#0056b3;
+}
+
+/* =========================
+   PRINT SIZE
+========================= */
+
+@page{
+
+    size:210mm 145mm;
+
+    margin:0;
+}
+
+@media print{
+
+    html,
+    body{
+
+        width:297mm;
+        height:148.5mm;
+
+        margin:0;
+        padding:0;
+
+        background:#fff;
+    }
+
+    .container{
+
+        width:297mm;
+        height:145.5mm;
+
+        margin:0;
+
+        padding:8mm 10mm;
+
+        box-shadow:none;
+
+        border:none;
+
+        overflow:hidden;
+    }
+
+    .buttons{
+
+        display:none;
+    }
+
+    body *{
+
+        visibility:hidden;
+    }
+
+    .container,
+    .container *{
+
+        visibility:visible;
+    }
+
+    .container{
+
+        position:absolute;
+
+        left:0;
+        top:0;
+    }
+
+}
+
+</style>
+</head>
+
+<body onload="setTodayDate()">
+
+<div class="container">
+
+    <!-- LOGO -->
+    <img src="123456.jpg" class="logo">
+
+    <!-- WATERMARK -->
+    <img src="123456.jpg" class="watermark">
+
+    <!-- HEADER -->
+
+    <h2>UDAN PATHSHALA</h2>
+
+    <div class="address">
+
+        G.T ROAD, PARBIRHATA CROSSING, SRIPALLY,
+        PURBA BARDHAMAN - 03 <br>
+
+        Phone: +91 8101614320 |
+        Email: udanpathshala@gmail.com
+
+    </div>
+
+    <!-- FORM -->
+
+    <form>
+
+        <table>
+
+            <tr>
+
+                <td>
+
+                    <label>Receiver's Name</label>
+
+                    <input type="text">
+
+                </td>
+
+                <td>
+
+                    <label>Purpose</label>
+
+                    <input type="text">
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+
+                    <label>Receiver's Phone No</label>
+
+                    <input type="text">
+
+                </td>
+
+                <td>
+
+                    <label>Payment Date</label>
+
+                    <input type="date" id="paymentDate">
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+
+                    <label>Total Amount</label>
+
+                    <input 
+                    type="number"
+                    id="totalAmount"
+                    oninput="calculateReceiving()">
+
+                </td>
+
+                <td>
+
+                    <label>Receipt No</label>
+
+                    <input type="text">
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+
+                    <label>Receiver's Address</label>
+
+                    <textarea></textarea>
+
+                </td>
+
+                <td>
+
+                    <label>Adjustment Amount</label>
+
+                    <input 
+                    type="number"
+                    id="adjustmentAmount"
+                    oninput="calculateReceiving()">
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+
+                    <label>Receiving Amount</label>
+
+                    <input 
+                    type="number"
+                    id="receivingAmount"
+                    readonly>
+
+                </td>
+
+                <td>
+
+                    <label>Payment Method</label>
+
+                    <select id="paymentMethod"
+                    onchange="showPaymentFields()">
+
+                        <option value="cash">Cash</option>
+
+                        <option value="upi">UPI</option>
+
+                        <option value="netbanking">Net Banking</option>
+
+                        <option value="cheque">Cheque</option>
+
+                    </select>
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td colspan="2">
+
+                    <label></label>
+
+                  
+
+                </td>
+
+            </tr>
+
+        </table>
+
+        <!-- UPI -->
+
+        <div id="upiFields"
+        class="hidden payment-details-group">
+
+            <div>
+
+                <label>UPI ID</label>
+
+                <input type="text">
+
+            </div>
+
+            <div>
+
+                <label>UPI Transaction ID</label>
+
+                <input type="text">
+
+            </div>
+
+        </div>
+
+        <!-- NET BANKING -->
+
+        <div id="netbankingFields"
+        class="hidden payment-details-group">
+
+            <div>
+
+                <label>Net Banking Transaction ID</label>
+
+                <input type="text">
+
+            </div>
+
+        </div>
+
+        <!-- CHEQUE -->
+
+        <div id="chequeFields"
+        class="hidden payment-details-group">
+
+            <div>
+
+                <label>Cheque No</label>
+
+                <input type="text">
+
+            </div>
+
+            <div>
+
+                <label>Cheque Owner Name</label>
+
+                <input type="text">
+
+            </div>
+
+            <div>
+
+                <label>Cheque Owner Phone No</label>
+
+                <input type="text">
+
+            </div>
+
+        </div>
+
+        <!-- SIGNATURES -->
+          
+
+        <div class="signatures">
+
+            <div class="signature-box">
+
+                Receiver's Signature
+
+            </div>
+
+            <div class="signature-box">
+
+                Official Stamp
+
+            </div>
+
+            <div class="signature-box">
+
+                Payer's Signature
+ 
+            </div>
+
+        </div>
+
+        <!-- BUTTONS -->
+
+        <div class="buttons">
+
+            <button type="button" onclick="printPage()">
+
+    Print
+
+            <button type="reset">
+
+                Clear Form
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+<script>
+
+/* =========================================
+   PRINT FUNCTION
+========================================= */
+
+function printPage(){
+
+    /* CASH HOLEO PRINT HOBE */
+
+    window.print();
+
+}
+
+/* =========================================
+   AUTO DATE
+========================================= */
+
+function setTodayDate(){
+
+    const today =
+    new Date().toISOString().substr(0,10);
+
+    document.getElementById("paymentDate").value =
+    today;
+
+}
+
+/* =========================================
+   SHOW PAYMENT FIELDS
+========================================= */
+
+function showPaymentFields(){
+
+    const method =
+    document.getElementById("paymentMethod").value;
+
+    const upi =
+    document.getElementById("upiFields");
+
+    const netbanking =
+    document.getElementById("netbankingFields");
+
+    const cheque =
+    document.getElementById("chequeFields");
+
+    /* ALL HIDE */
+
+    upi.style.display = "none";
+
+    netbanking.style.display = "none";
+
+    cheque.style.display = "none";
+
+    /* CASH */
+
+    if(method === "cash"){
+
+        return true;
+
+    }
+
+    /* UPI */
+
+    if(method === "upi"){
+
+        upi.style.display = "flex";
+
+    }
+
+    /* NET BANKING */
+
+    else if(method === "netbanking"){
+
+        netbanking.style.display = "flex";
+
+    }
+
+    /* CHEQUE */
+
+    else if(method === "cheque"){
+
+        cheque.style.display = "flex";
+
+    }
+
+}
+
+/* =========================================
+   AUTO RECEIVING AMOUNT
+========================================= */
+
+function calculateReceiving(){
+
+    const total =
+    parseFloat(
+    document.getElementById("totalAmount").value
+    ) || 0;
+
+    const adjustment =
+    parseFloat(
+    document.getElementById("adjustmentAmount").value
+    ) || 0;
+
+    const receiving =
+    total - adjustment;
+
+    document.getElementById("receivingAmount").value =
+    receiving.toFixed(2);
+
+}
+
+/* =========================================
+   CLEAR FORM
+========================================= */
+
+function clearFormData(){
+
+    document.querySelector("form").reset();
+
+    setTodayDate();
+
+    document.getElementById("receivingAmount").value = "";
+
+    document.getElementById("upiFields").style.display = "none";
+
+    document.getElementById("netbankingFields").style.display = "none";
+
+    document.getElementById("chequeFields").style.display = "none";
+
+}
+
+/* =========================================
+   PAGE LOAD
+========================================= */
+
+window.onload = function(){
+
+    setTodayDate();
+
+    showPaymentFields();
+
+}
+
+</script>
+</body>
+</html>
