@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -16,10 +17,9 @@
 }
 
 body{
-    font-family: Arial, sans-serif;
+    font-family:Arial, sans-serif;
     background:#ececec;
     padding:20px;
-    overflow:auto;   
 }
 
 /* =========================
@@ -42,9 +42,7 @@ body{
     overflow:hidden;
 
     box-shadow:0 0 10px rgba(0,0,0,0.2);
-   height:auto;  
 }
-
 
 /* =========================
    LOGO
@@ -57,7 +55,7 @@ body{
     position:absolute;
 
     top:10px;
-    left:100px;
+    left:90px;
 }
 
 /* =========================
@@ -68,13 +66,13 @@ body{
 
     position:absolute;
 
-    top:120px;
+    top:100px;
 
     left:50%;
 
     transform:translateX(-50%);
 
-    width:400px;
+    width:350px;
 
     opacity:0.05;
 
@@ -89,7 +87,7 @@ h2{
 
     text-align:center;
 
-    font-size:32px;
+    font-size:30px;
 
     margin-bottom:2px;
 
@@ -102,7 +100,7 @@ h2{
 
     font-weight:bold;
 
-    font-size:13px;
+    font-size:12px;
 
     line-height:1.4;
 
@@ -194,13 +192,13 @@ textarea{
 
 .signatures{
 
-    margin-top:70px;
+    margin-top:50px;
 
     display:flex;
 
     justify-content:space-between;
 
-    gap:70px;
+    gap:60px;
 }
 
 .signature-box{
@@ -230,12 +228,12 @@ textarea{
 
     gap:15px;
 
-    margin-top:12px;
+    margin-top:15px;
 }
 
 button{
 
-    padding:7px 20px;
+    padding:8px 20px;
 
     font-size:13px;
 
@@ -256,13 +254,12 @@ button:hover{
 }
 
 /* =========================
-   PRINT SIZE
+   PRINT STYLE
 ========================= */
 
 @page{
 
-    size:210mm 297mm;
-
+    size:A4 portrait;
     margin:0;
 }
 
@@ -272,18 +269,29 @@ button:hover{
     body{
 
         width:210mm;
-        height:297mm;
+        height:145mm;
 
-        margin:0;
-        padding:0;
+        margin:0 !important;
+        padding:0 !important;
 
         background:#fff;
+    }
+
+    body{
+
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .buttons{
+
+        display:none;
     }
 
     .container{
 
         width:210mm;
-        height:145.5mm;
+        height:145mm;
 
         margin:0;
 
@@ -294,45 +302,32 @@ button:hover{
         border:none;
 
         overflow:hidden;
-    }
-
-    .buttons{
-
-        display:none;
-    }
-
-    body *{
-
-        visibility:hidden;
-    }
-
-    .container,
-    .container *{
-
-        visibility:visible;
-    }
-
-    .container{
 
         position:absolute;
 
-        left:0;
         top:0;
+        left:0;
     }
 
+    .watermark{
+
+        opacity:0.05 !important;
+    }
 }
 
 </style>
 </head>
 
-<body onload="setTodayDate()">
+<body>
 
 <div class="container">
 
     <!-- LOGO -->
+
     <img src="123456.jpg" class="logo">
 
     <!-- WATERMARK -->
+
     <img src="123456.jpg" class="watermark">
 
     <!-- HEADER -->
@@ -351,7 +346,7 @@ button:hover{
 
     <!-- FORM -->
 
-    <form>
+    <form id="receiptForm">
 
         <table>
 
@@ -475,18 +470,6 @@ button:hover{
 
             </tr>
 
-            <tr>
-
-                <td colspan="2">
-
-                    <label></label>
-
-                  
-
-                </td>
-
-            </tr>
-
         </table>
 
         <!-- UPI -->
@@ -559,7 +542,6 @@ button:hover{
         </div>
 
         <!-- SIGNATURES -->
-          
 
         <div class="signatures">
 
@@ -578,7 +560,7 @@ button:hover{
             <div class="signature-box">
 
                 Payer's Signature
- 
+
             </div>
 
         </div>
@@ -589,9 +571,11 @@ button:hover{
 
             <button type="button" onclick="printPage()">
 
-    Print
+                Print
 
-            <button type="reset">
+            </button>
+
+            <button type="button" onclick="clearFormData()">
 
                 Clear Form
 
@@ -602,6 +586,7 @@ button:hover{
     </form>
 
 </div>
+
 <script>
 
 /* =========================================
@@ -610,10 +595,7 @@ button:hover{
 
 function printPage(){
 
-    /* CASH HOLEO PRINT HOBE */
-
     window.print();
-
 }
 
 /* =========================================
@@ -627,7 +609,6 @@ function setTodayDate(){
 
     document.getElementById("paymentDate").value =
     today;
-
 }
 
 /* =========================================
@@ -648,46 +629,24 @@ function showPaymentFields(){
     const cheque =
     document.getElementById("chequeFields");
 
-    /* ALL HIDE */
-
     upi.style.display = "none";
-
     netbanking.style.display = "none";
-
     cheque.style.display = "none";
-
-    /* CASH */
-
-    if(method === "cash"){
-
-        return true;
-
-    }
-
-    /* UPI */
 
     if(method === "upi"){
 
         upi.style.display = "flex";
-
     }
-
-    /* NET BANKING */
 
     else if(method === "netbanking"){
 
         netbanking.style.display = "flex";
-
     }
-
-    /* CHEQUE */
 
     else if(method === "cheque"){
 
         cheque.style.display = "flex";
-
     }
-
 }
 
 /* =========================================
@@ -711,7 +670,6 @@ function calculateReceiving(){
 
     document.getElementById("receivingAmount").value =
     receiving.toFixed(2);
-
 }
 
 /* =========================================
@@ -720,18 +678,13 @@ function calculateReceiving(){
 
 function clearFormData(){
 
-    document.querySelector("form").reset();
+    document.getElementById("receiptForm").reset();
 
     setTodayDate();
 
     document.getElementById("receivingAmount").value = "";
 
-    document.getElementById("upiFields").style.display = "none";
-
-    document.getElementById("netbankingFields").style.display = "none";
-
-    document.getElementById("chequeFields").style.display = "none";
-
+    showPaymentFields();
 }
 
 /* =========================================
@@ -743,9 +696,9 @@ window.onload = function(){
     setTodayDate();
 
     showPaymentFields();
-
 }
 
 </script>
+
 </body>
 </html>
